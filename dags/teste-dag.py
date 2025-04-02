@@ -2,7 +2,7 @@ from datetime import datetime
 from cosmos import DbtDag, ProjectConfig
 from cosmos.operators import DbtDocsOperator
 from include.profiles import airflow_db
-
+#### teste
 # Caminho para o seu projeto DBT
 dbt_project_path = "/opt/airflow/dags/dbt_tutorial"
 
