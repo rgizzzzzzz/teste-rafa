@@ -16,6 +16,6 @@ simple_dag = DbtDag(
     schedule_interval="@daily",
     start_date=datetime(2023, 1, 1),
     catchup=False,
-    dag_id="dag_teste2_mudeinome_denovo",
+    dag_id="dag_teste2_mudeinome_denovoo",
     tags=["segunda"],
 )
