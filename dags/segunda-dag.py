@@ -6,7 +6,7 @@ import shutil
 import os
 
 # Caminho para o seu projeto DBT
-dbt_project_path = "/opt/airflow/dags/dbt_tutorial"
+dbt_project_path = "/opt/airflow/dags/dags/segunda_dag2/dbt_tutorial"
 docs_output_dir = "/opt/docs"
 
 # Definindo a configuração do perfil antes de usá-la
