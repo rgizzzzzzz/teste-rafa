@@ -1,0 +1,28 @@
+{
+    "name": "sqlserver-carros-sink",
+    "config": {
+        "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+        "tasks.max": "1",
+        "topics": "sql2.Teste.dbo.carros",
+        "connection.url": "jdbc:sqlserver://192.168.1.135:1433;databaseName=Teste",
+        "connection.user": "debezium_user",
+        "connection.password": "Mindlabs123",
+        "table.name.format": "Teste.sink.carros_sink",
+        "fields.whitelist": "id,username,email,op",
+        "insert.mode": "upsert",
+        "pk.mode": "record_key",
+        "pk.fields": "id",
+        "auto.create": "true",
+        "auto.evolve": "true",
+
+        "transforms": "Unwrap,RenameField",
+
+        "transforms.Unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
+        "transforms.Unwrap.drop.tombstones": "true",
+        "transforms.Unwrap.add.fields": "source.ts_ms,op,ts_ms",
+        "transforms.Unwrap.delete.handling.mode": "rewrite",
+
+        "transforms.RenameField.type": "org.apache.kafka.connect.transforms.ReplaceField$Value",
+        "transforms.RenameField.renames": "__op:op"
+    }
+}

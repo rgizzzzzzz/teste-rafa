@@ -37,13 +37,13 @@ def copy_docs_to_local(project_dir: str, context: dict = None):
 
 # Criando a DAG com o DBT
 with DbtDag(
-    dag_id="teste_dag_2",  # dag_id sempre deve vir primeiro
+    dag_id="teste_dag_segunda",  # dag_id sempre deve vir primeiro
     project_config=ProjectConfig(dbt_project_path),
     profile_config=airflow_db,
     schedule_interval="@daily",
     start_date=datetime(2023, 1, 1),
     catchup=False,
-    tags=["simple"],
+    tags=["segunda"],
 ) as simple_dag:  # Usando o contexto 'with' para garantir que a DAG seja criada corretamente
 
     # Definindo a tarefa para gerar a documentação DBT e copiar os arquivos para /opt/docs

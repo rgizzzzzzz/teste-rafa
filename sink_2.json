@@ -1,0 +1,37 @@
+{
+    "name": "sqlserver-carros-sink",
+    "config": {
+      "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+      "tasks.max": "1",
+      "topics": "sql2.Teste.dbo.carros",
+      "connection.url": "jdbc:sqlserver://192.168.1.135:1433;databaseName=Teste",
+      "connection.user": "debezium_user",
+      "connection.password": "Mindlabs123",
+      "table.name.format": "Teste.sink.carros_sink",
+      "fields.whitelist": "id,username,email,op,created_at",
+      "insert.mode": "upsert",
+      "pk.mode": "record_key",
+      "pk.fields": "id",
+      "auto.create": "true",
+      "auto.evolve": "true",
+      "value.converter.enhanced.avro.schema.support":"true",
+      "value.converter.ignore.default.for.nullables":"true",
+
+  
+      "transforms": "Unwrap,RenameField,filterExample1",
+  
+      "transforms.Unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
+      "transforms.Unwrap.drop.tombstones": "true",
+      "transforms.Unwrap.add.fields": "source.ts_ms,op,ts_ms",
+      "transforms.Unwrap.delete.handling.mode": "rewrite",
+  
+      "transforms.RenameField.type": "org.apache.kafka.connect.transforms.ReplaceField$Value",
+      "transforms.RenameField.renames": "__op:op",
+  
+      "transforms.filterExample1.type": "io.confluent.connect.transforms.Filter$Value",
+      "transforms.filterExample1.filter.condition": "$[?(@.op != 'r')]",
+      "transforms.filterExample1.filter.type": "include",
+      "transforms.filterExample1.missing.or.null.behavior": "fail"
+    }
+  }
+  
