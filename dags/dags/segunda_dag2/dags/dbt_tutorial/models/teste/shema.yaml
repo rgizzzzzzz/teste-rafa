@@ -2,17 +2,17 @@ version: 2
 
 models:
   - name: stg_product
-    description: "Modelo de produtos numnero 2"
+    description: "Modelo de produtos"
     columns:
       - name: productid
-        description: "ID do produto numero 2"
+        description: "ID do produto"
         tests:
           - unique
           - not_null
   - name: stg_sales_order_detail
-    description: "Modelo de TESTE numero 2"
+    description: "Modelo de TESTE"
     columns:
       - name: salesorderid
-        description: "TESTE numnero 2"
+        description: "TESTE"
         tests:
           - not_null
